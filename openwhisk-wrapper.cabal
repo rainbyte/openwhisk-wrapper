@@ -20,3 +20,4 @@ executable openwhisk-example-hs
                      , aeson
                      , http-types
                      , scotty
+                     , text
