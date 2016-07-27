@@ -16,11 +16,8 @@ toServiceArgs body =
   where
     parser = withObject "jsonData" $ \o -> o .: "value"
 
-service :: Value -> Value
-service = id
-
-main :: IO ()
-main = scotty 8080 $ do
+openwhiskWrapper :: (Value -> Value) -> IO ()
+openwhiskWrapper service = scotty 8080 $ do
   post "/init" $ do
     status ok200
   post "/run" $ do
@@ -35,3 +32,6 @@ main = scotty 8080 $ do
         let errMsg = "result is not an object" :: Text
         json (object ["error" .= errMsg])
         status status502
+
+main :: IO ()
+main = openwhiskWrapper id
