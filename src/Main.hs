@@ -4,17 +4,15 @@ module Main where
 
 import           Data.Aeson hiding (json)
 import           Data.Aeson.Types (parseMaybe)
+import           Data.Maybe (fromMaybe)
 import           Data.Text (Text)
 import           Network.HTTP.Types.Status
 import           Web.Scotty
 
 toServiceArgs :: Value -> Value
-toServiceArgs body =
-  case parseMaybe parser body of
-    Just args -> args
-    Nothing   -> object []
+toServiceArgs = fromMaybe (object []) . (parseMaybe parser)
   where
-    parser = withObject "jsonData" $ \o -> o .: "value"
+    parser = withObject "jsonData" (.: "value")
 
 openwhiskWrapper :: (Value -> Value) -> IO ()
 openwhiskWrapper service = scotty 8080 $ do
