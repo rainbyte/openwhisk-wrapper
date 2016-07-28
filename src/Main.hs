@@ -19,10 +19,8 @@ openwhiskWrapper service = scotty 8080 $ do
   post "/init" $ do
     status ok200
   post "/run" $ do
-    d <- jsonData
-    let args = toServiceArgs d
-        result = service args
-    case result of
+    args <- fmap toServiceArgs jsonData
+    case service args of
       (Object o) -> do
         json o
         status ok200
