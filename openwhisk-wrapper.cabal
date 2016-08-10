@@ -2,7 +2,7 @@ name:                openwhisk-wrapper
 version:             0.2.0.0
 synopsis:            openwhisk service wrapper
 description:         Please see README.md
-homepage:            https://github.com/githubuser/openwhisk-wrapper#readme
+homepage:            https://github.com/rainbyte/openwhisk-wrapper#readme
 license:             GPL-3
 license-file:        LICENSE
 author:              Alvaro Fernando García
@@ -15,6 +15,7 @@ cabal-version:       >=1.10
 library
   hs-source-dirs:      src
   exposed-modules:     Network.OpenWhisk
+  default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
                      , aeson
                      , http-types
