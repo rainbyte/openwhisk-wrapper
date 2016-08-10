@@ -8,11 +8,11 @@
     * Deploy phase: uses `haskell-scratch` image
 
 ## Usage:
-1. Write the logic of your service, which should be a function with type `Value -> Value`
+1. Write the logic of your service, which should be a function with type `Value -> IO (Maybe Value)`
 
     ```
-    myService :: Value -> Value -- consumes and produces JSON objects
-    myService = id -- service logic, e.g. this echoes input data
+    myService :: Value -> IO (Maybe Value) -- consumes and produces JSON objects
+    myService = pure . Right . id -- service logic, e.g. this echoes input data
     ```
 
 2. Wrap your service with `openwhiskWrapper` function (see `Network.OpenWhisk` module)
