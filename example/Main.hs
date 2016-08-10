@@ -6,4 +6,4 @@ import           Data.Text (Text)
 import           Network.OpenWhisk
 
 main :: IO ()
-main = openwhiskWrapper id
+main = openwhiskWrapper (pure . Just . id)

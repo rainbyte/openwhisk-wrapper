@@ -1,5 +1,5 @@
 name:                openwhisk-wrapper
-version:             0.1.0.0
+version:             0.2.0.0
 synopsis:            openwhisk service wrapper
 description:         Please see README.md
 homepage:            https://github.com/githubuser/openwhisk-wrapper#readme
@@ -20,6 +20,7 @@ library
                      , http-types
                      , scotty
                      , text
+                     , transformers
 
 executable openwhisk-example-hs
   hs-source-dirs:      example
